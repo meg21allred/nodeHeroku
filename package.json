@@ -1,0 +1,12 @@
+{
+  "name": "trynodeheroku",
+  "version": "1.0.0",
+  "description": "connect app to heroku",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Megan Allred",
+  "license": "ISC"
+}
