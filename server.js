@@ -37,6 +37,7 @@ app.post('/getRate', (req, res) => {
 function calculateRate(data) {
     let weight = data.weight;
     let packageType = data.packageType;
+    let zone = data.zone;
     let rate;
 
     if (packageType == "stamped") {
@@ -46,7 +47,7 @@ function calculateRate(data) {
     } else if (packageType == "flats") {
         rate = calFlats(weight);
     } else if (packageType == "first-class") {
-        rate = calFirstClass(weight);
+        rate = calFirstClass(weight, zone);
     }
 
     
@@ -60,19 +61,19 @@ function calStamped(weight) {
 
     switch (true) {
         case (weight <= 1 ) :
-            rate = .55;
+            rate = "$" + 0.55.toFixed(2);
             break;
         case (weight <= 2):
-            rate = .70;
+            rate = "$" + 0.70.toFixed(2);
             break;
         case (weight <= 3):
-            rate = .85;
+            rate = "$" + 0.85.toFixed(2);
             break;
         case (weight <= 3.5):
-            rate = 1.00;
+            rate = "$" + 1.00.toFixed(2);
             break;
         default:
-            rate = "Weight is greater then category capacity";
+            rate = "...greater then category capacity";
             break;
     }
 
@@ -85,19 +86,19 @@ function calMetered(weight) {
 
     switch (true) {
         case (weight <= 1 ) :
-            rate = .50;
+            rate = "$" + 0.50.toFixed(2);
             break;
         case (weight <= 2):
-            rate = .65;
+            rate = "$" + 0.65.toFixed(2);
             break;
         case (weight <= 3):
-            rate = .80;
+            rate = "$" + 0.80.toFixed(2);
             break;
         case (weight <= 3.5):
-            rate = .95;
+            rate = "$" + 0.95.toFixed(2);
             break;
         default:
-            rate = "Weight is greater then category capacity";
+            rate = "...greater then category capacity";
             break;
     }
 
@@ -110,72 +111,183 @@ function calFlats(weight) {
 
     switch (true) {
         case (weight <= 1 ) :
-            rate = 1.00;
+            rate = "$" + 1.00.toFixed(2);
             break;
         case (weight <= 2):
-            rate = 1.20;
+            rate = "$" + 1.20.toFixed(2);
             break;
         case (weight <= 3):
-            rate = 1.40;
+            rate = "$" + 1.40.toFixed(2);
             break;
         case (weight <= 4):
-            rate = 1.60;
+            rate = "$" + 1.60.toFixed(2);
             break;
         case (weight <= 5):
-            rate = 1.80;
+            rate = "$" + 1.80.toFixed(2);
             break;
         case (weight <= 6):
-            rate = 2.00;
+            rate = "$" + 2.00.toFixed(2);
             break;
         case (weight <= 7):
-            rate = 2.20;
+            rate = "$" + 2.20.toFixed(2);
             break;
         case (weight <= 8):
-            rate = 2.40;
+            rate = "$" + 2.40.toFixed(2);
             break;
         case (weight <= 9):
-            rate = 2.60;
+            rate = "$" + 2.60.toFixed(2);
             break;
         case (weight <= 10):
-            rate = 2.80;
+            rate = "$" + 2.80.toFixed(2);
             break;
         case (weight <= 11):
-            rate = 3.00;
+            rate = "$" + 3.00.toFixed(2);
             break;
         case (weight <= 12):
-            rate = 3.20;
+            rate = "$" + 3.20.toFixed(2);
             break;
         case (weight <= 13):
-            rate = 3.40;
+            rate = "$" + 3.40.toFixed(2);
             break;
         default:
-            rate = "Weight is greater then category capacity";
+            rate = "...greater then category capacity";
             break;
     }
 
     return rate;
 }
 
-function calFirstClass(weight) {
+function calFirstClass(weight, zone) {
 
     let rate;
 
-    switch (true) {
-        case (weight <= 4):
-            rate = 3.80;
-            break;
-        case (weight <= 8):
-            rate = 4.60;
-            break;
-        case (weight <= 12):
-            rate = 5.30;
-            break;
-        case (weight <= 13):
-            rate = 5.90;
-            break;
-        default:
-            rate = "Weight is greater then category capacity";
-            break;
-    }
+    if (zone == "1&2") {
+        switch (true) {
+            case (weight <= 4):
+                rate = "$" + 3.80.toFixed(2);
+                break;
+            case (weight <= 8):
+                rate = "$" + 4.60.toFixed(2);
+                break;
+            case (weight <= 12):
+                rate = "$" + 5.30.toFixed(2);
+                break;
+            case (weight <= 13):
+                rate = "$" + 5.90.toFixed(2);
+                break;
+            default:
+                rate = "...greater then category capacity";
+                break;
+        }
+    } else if (zone == "3") {
+        switch (true) {
+            case (weight <= 4):
+                rate = "$" + 3.85.toFixed(2);
+                break;
+            case (weight <= 8):
+                rate = "$" + 4.65.toFixed(2);
+                break;
+            case (weight <= 12):
+                rate = "$" + 5.35.toFixed(2);
+                break;
+            case (weight <= 13):
+                rate = "$" + 5.95.toFixed(2);
+                break;
+            default:
+                rate = "...greater then category capacity";
+                break;
+        }
+    } else if (zone == "4") {
+        switch (true) {
+            case (weight <= 4):
+                rate = "$" + 3.90.toFixed(2);
+                break;
+            case (weight <= 8):
+                rate = "$" + 4.70.toFixed(2);
+                break;
+            case (weight <= 12):
+                rate = "$" + 5.40.toFixed(2);
+                break;
+            case (weight <= 13):
+                rate = "$" + 6.05.toFixed(2);
+                break;
+            default:
+                rate = "...greater then category capacity";
+                break;
+        }
+    } else if (zone == "5") {
+        switch (true) {
+            case (weight <= 4):
+                rate = "$" + 3.95.toFixed(2);
+                break;
+            case (weight <= 8):
+                rate = "$" + 4.75.toFixed(2);
+                break;
+            case (weight <= 12):
+                rate = "$" + 5.45.toFixed(2);
+                break;
+            case (weight <= 13):
+                rate = "$" + 6.15.toFixed(2);
+                break;
+            default:
+                rate = "...greater then category capacity";
+                break;
+        }
+    } else if (zone = "6") {
+        switch (true) {
+            case (weight <= 4):
+                rate = "$" + 4.00.toFixed(2);
+                break;
+            case (weight <= 8):
+                rate = "$" + 4.80.toFixed(2);
+                break;
+            case (weight <= 12):
+                rate = "$" + 5.50.toFixed(2);
+                break;
+            case (weight <= 13):
+                rate = "$" + 6.20.toFixed(2);
+                break;
+            default:
+                rate = "...greater then category capacity";
+                break;
+        }
+    } else if (zone == "7") {
+        switch (true) {
+            case (weight <= 4):
+                rate = "$" + 4.05.toFixed(2);
+                break;
+            case (weight <= 8):
+                rate = "$" + 4.90.toFixed(2);
+                break;
+            case (weight <= 12):
+                rate = "$" + 5.65.toFixed(2);
+                break;
+            case (weight <= 13):
+                rate = "$" + 6.40.toFixed(2);
+                break;
+            default:
+                rate = "...greater then category capacity";
+                break;
+        }
+    } else if (zone == "8" || zone =="9") {
+        switch (true) {
+            case (weight <= 4):
+                rate = "$" + 4.20.toFixed(2);
+                break;
+            case (weight <= 8):
+                rate = "$" + 5.00.toFixed(2);
+                break;
+            case (weight <= 12):
+                rate = "$" + 5.75.toFixed(2);
+                break;
+            case (weight <= 13):
+                rate = "$" + 6.50.toFixed(2);
+                break;
+            default:
+                rate = "...greater then category capacity";
+                break;
+        }
+    } 
+    
     return rate;
 }

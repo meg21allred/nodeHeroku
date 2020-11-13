@@ -4,17 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Postage Rates</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet"> 
 </head>
 <body>
-    <form action="/getRate" method="post">
-        <input type="text" name="weight" placeholder="Enter package weight">
-        <select id="package" name="packageType">
-        <option value="stamped" name="packageType1" selected>Letters (Stamped)</option>
-        <option value="metered" name="packageType2">Letters (Metered)</option>
-        <option value="flats" name="packageType3">Large Envelopes (Flats)</option>
-        <option value="first-class" name="packageType4">First-Class Package Service</option>
-  </select>
-  <button type="submit">Get Postage</button>
-    </form>
+    <br><br><br><br><br><br>
+    <center>
+        <div class="formDiv">
+            <h1 class="title">USPS Postage Rate Calculator</h1>
+            <form action="/getRate" method="post">
+                <input class="form1" type="text" name="weight" placeholder="Enter weight in ounces">
+                <select onchange="showZones()" class="form1" id="package" name="packageType">
+                <option value="stamped" name="packageType1" selected>Letters (Stamped)</option>
+                <option value="metered" name="packageType2">Letters (Metered)</option>
+                <option value="flats" name="packageType3">Large Envelopes (Flats)</option>
+                <option id="first-class" value="first-class" name="packageType4">First-Class Package Service</option>
+          </select>
+          <select class="form1" name="zone" id="zones" style="display: none;">
+              <option value="1&2" name='1&2'>1 & 2</option>
+              <option value="3" name='3'>3</option>
+              <option value="4" name='4'>4</option>
+              <option value="5" name='5'>5</option>
+              <option value="6" name='6'>6</option>
+              <option value="7" name='7'>7</option>
+              <option value="8" name='8'>8</option>
+              <option value="9" name='9'>9</option>
+          </select>
+          <button class="form1" type="submit">Get Postage</button>
+            </form>
+            <p id="p"></p>
+        </div>
+
+        <script >
+            function showZones() {
+                if (document.getElementById('first-class').selected) {
+                    document.getElementById('zones').style.display = "inline-block";
+                } else {
+                    document.getElementById('zones').style.display ='none';
+                }
+            }
+
+          
+
+        </script>
+    
+</center>
 </body>
 </html>
